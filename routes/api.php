@@ -16,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix("/news")->name("news.")->group(function() {
+    Route::Post("/", [NewsController::class, "store"])->name("store");
     Route::Get("/", [NewsController::class, "index"])->name("index");
 });
