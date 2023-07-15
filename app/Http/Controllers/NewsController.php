@@ -31,4 +31,11 @@ class NewsController extends Controller
 
         return response()->json(["data" => $createdNews]);
     }
+
+    public function show(News $news)
+    {
+        $news->load("comments");
+
+        return response()->json(["data" => $news]);
+    }
 }
