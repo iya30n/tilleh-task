@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "faadcaa0-bc07-4629-8a75-a873e7f342f3",
+		"name": "tilleh",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8648618"
+	},
+	"item": [
+		{
+			"name": "News",
+			"item": [
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "first news",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "this is first news",
+									"type": "text"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/Users/yasin/Downloads/2023-06-08 20.50.53.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{localhost}}/api/news",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/news",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/news/1",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/news/1/like",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"1",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dislike",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/news/1/dislike",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"1",
+								"dislike"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-comment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "news_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "writer_name",
+									"value": "yasin",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "this is my first comment on the first news.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{localhost}}/api/news/add-comment",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"add-comment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/comments/1/like",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dislike",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/comments/1/dislike",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1",
+								"dislike"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "tilleh.test"
+		}
+	]
+}
