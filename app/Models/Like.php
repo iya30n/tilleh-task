@@ -12,4 +12,9 @@ class Like extends Model
     {
         return $this->morphTo();
     }
+
+    public function ScopeHasLiked($q, string $signature): bool
+    {
+        return $q->where("user_signature", $signature)->exists();
+    }
 }

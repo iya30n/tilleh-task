@@ -12,4 +12,9 @@ class Dislike extends Model
     {
         return $this->morphTo();
     }
+
+    public function ScopeHasDisliked($q, string $signature): bool
+    {
+        return $q->where("user_signature", $signature)->exists();
+    }
 }

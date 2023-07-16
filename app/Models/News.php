@@ -3,9 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+use App\Actions\Reactions\Reactable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
+class News extends Model implements Reactable
 {
     // use HasFactory;
 
@@ -16,12 +19,12 @@ class News extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likes()
+    public function likes(): MorphMany
     {
         return $this->morphMany(Like::class, "likeable");
     }
 
-    public function dislikes()
+    public function dislikes(): MorphMany
     {
         return $this->morphMany(Dislike::class, "dislikeable");
     }
