@@ -2,13 +2,13 @@
 
 namespace App\Http\Requests\News;
 
+use App\Http\Requests\Traits\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreNewsRequest extends FormRequest
 {
+    use JsonResponse;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -29,21 +29,5 @@ class StoreNewsRequest extends FormRequest
             "content" => "required|string",
             "thumbnail" => "required|image|mimes:jpeg,jpg,png|max:1000"
         ];
-    }
-
-    /** 
-     * Handle a failed validation attempt.
-     * 
-     * @param \Illuminate\Contracts\Validation\Validator $validator
-     * @return void
-     * 
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function failedValidation(Validator $validator)
-    {
-        $errors = (new ValidationException($validator))->errors();
-        throw new HttpResponseException(
-            response()->json(["errors" => collect($errors)], 422)
-        );
     }
 }
