@@ -20,4 +20,9 @@ class News extends Model
     {
         return $this->morphMany(Like::class, "likeable");
     }
+
+    public function dislikes()
+    {
+        return $this->morphMany(Dislike::class, "dislikeable");
+    }
 }
