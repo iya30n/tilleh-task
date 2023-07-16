@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreign("news_id")->references("id")->on("news");
             $table->string("writer_name", 70);
             $table->text("content");
+            $table->bigInteger("likes_count")->default(0);
+            $table->bigInteger("dislikes_count")->default(0);
             $table->timestamps();
         });
     }
