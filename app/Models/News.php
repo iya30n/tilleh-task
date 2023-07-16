@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 use App\Actions\Reactions\Reactable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\Storage;
 
 class News extends Model implements Reactable
 {
-    // use HasFactory;
-
     protected $guarded = ["id", "created_at", "updated_at"];
 
     public function comments()
@@ -27,5 +24,10 @@ class News extends Model implements Reactable
     public function dislikes(): MorphMany
     {
         return $this->morphMany(Dislike::class, "dislikeable");
+    }
+
+    public function getThumbnailAttribute($value)
+    {
+        return Storage::disk("s3")->url($value);
     }
 }

@@ -19,7 +19,7 @@ class NewsController extends Controller
     public function store(StoreNewsRequest $request)
     {
         try {
-            $thumbnailPath = Storage::put("news", $request->file("thumbnail"));
+            $thumbnailPath = Storage::disk("s3")->put("news", $request->file("thumbnail"), "public");
             $createdNews = News::create(array_merge(
                 $request->validated(), ["thumbnail" => $thumbnailPath]
             ));
