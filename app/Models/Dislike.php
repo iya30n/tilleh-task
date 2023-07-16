@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Dislike extends Model
@@ -13,7 +14,7 @@ class Dislike extends Model
         return $this->morphTo();
     }
 
-    public function ScopeHasDisliked($q, string $signature): bool
+    public function ScopeHasdisliked(Builder $q, string $signature): bool
     {
         return $q->where("user_signature", $signature)->exists();
     }

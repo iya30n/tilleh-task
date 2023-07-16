@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dislikes', function (Blueprint $table) {
             $table->id();
-            $table->string("user_signature")->unique();
+            $table->string("user_signature");
             $table->string("dislikeable_type");
             $table->unsignedBigInteger("dislikeable_id");
             $table->timestamps();
