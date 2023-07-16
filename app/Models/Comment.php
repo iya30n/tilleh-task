@@ -15,4 +15,9 @@ class Comment extends Model
     {
         return $this->belongsTo(News::class);
     }
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class, "likeable");
+    }
 }

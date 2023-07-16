@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,10 @@ Route::prefix("/news")->name("news.")->group(function() {
     Route::Get("/{news}", [NewsController::class, "show"])->name("show");
 
     Route::Post("/add-comment", [CommentController::class, "store"])->name("add_comment");
+
+    Route::Post("/{news}/like", [LikeController::class, "news"])->name("like");
+});
+
+Route::prefix("/comments")->name("comments.")->group(function() {
+    Route::Post("/{comment}/like", [LikeController::class, "comment"])->name("like");
 });
