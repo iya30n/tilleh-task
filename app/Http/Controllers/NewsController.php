@@ -24,7 +24,7 @@ class NewsController extends Controller
                 $request->validated(), ["thumbnail" => $thumbnailPath]
             ));
         } catch (Exception $e) {
-            Storage::delete($thumbnailPath);
+            Storage::disk("s3")->delete($thumbnailPath);
             Log::error($e->getMessage());
             return response()->json(["message" => "Server error!"]);
         }
