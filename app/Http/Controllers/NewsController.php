@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\News;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
+use App\Services\NewsService;
 use App\Http\Requests\News\StoreNewsRequest;
 use App\Http\Resources\News\NewsListResource;
 
@@ -16,20 +14,9 @@ class NewsController extends Controller
         return NewsListResource::collection(News::paginate());
     }
 
-    public function store(StoreNewsRequest $request)
+    public function store(StoreNewsRequest $request, NewsService $newsService)
     {
-        try {
-            $thumbnailPath = Storage::disk("s3")->put("news", $request->file("thumbnail"), "public");
-            $createdNews = News::create(array_merge(
-                $request->validated(), ["thumbnail" => $thumbnailPath]
-            ));
-        } catch (Exception $e) {
-            Storage::disk("s3")->delete($thumbnailPath);
-            Log::error($e->getMessage());
-            return response()->json(["message" => "Server error!"]);
-        }
-
-        return response()->json(["data" => $createdNews]);
+        return $newsService->store($request);
     }
 
     public function show(News $news)
