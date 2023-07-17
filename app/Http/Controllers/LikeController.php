@@ -4,21 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Comment;
-use Illuminate\Http\Request;
 use App\Services\ReactionService;
 
 class LikeController extends Controller
 {
-    public function news(News $news, Request $request)
+    public function news(News $news, ReactionService $reactionService)
     {
-        (new ReactionService)->like($news, $request->getClientIp());
+        $reactionService->like($news, request()->getClientIp());
 
 		return response()->json(["message" => "Success!"]);
     }
 
-    public function comment(Comment $comment, Request $request)
+    public function comment(Comment $comment, ReactionService $reactionService)
     {
-        (new ReactionService)->like($comment, $request->getClientIp());
+        $reactionService->like($comment, request()->getClientIp());
 
 		return response()->json(["message" => "Success!"]);
     }

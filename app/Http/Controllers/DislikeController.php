@@ -4,23 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Comment;
-use Illuminate\Http\Request;
 use App\Services\ReactionService;
 
 class DislikeController extends Controller
 {
-    public function news(News $news, Request $request)
+    public function news(News $news, ReactionService $reactionService)
     {
-        // (new Dislike)->toggle($news, $request->fingerprint());
-        (new ReactionService)->dislike($news, $request->getClientIp());
+        $reactionService->dislike($news, request()->getClientIp());
 
 		return response()->json(["message" => "Success!"]);
     }
 
-    public function comment(Comment $comment, Request $request)
+    public function comment(Comment $comment, ReactionService $reactionService)
     {
-        // (new Dislike)->toggle($comment, $request->fingerprint());
-        (new ReactionService)->dislike($comment, $request->getClientIp());
+        $reactionService->dislike($comment, request()->getClientIp());
 
 		return response()->json(["message" => "Success!"]);
     }
